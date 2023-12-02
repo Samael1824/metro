@@ -20,6 +20,13 @@ app.use(express.urlencoded({extended: true}))
 app.use('/auth', authController)
 app.use('/blog', blogController)
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://656af660c3408b2383eb203a--glowing-biscuit-05792b.netlify.app');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
+
 // multer
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
